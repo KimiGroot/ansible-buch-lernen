@@ -1,0 +1,49 @@
+
+
+[test_hosts]
+debian.example.org ansible_host=192.168.56.10 
+rocky.example.org ansible_host=192.168.56.20 
+suse.example.org ansible_user=root ansible_host=192.168.56.30
+ubuntu.example.org ansible_host=192.168.56.40 
+
+[test_hosts:vars]
+#ansible_ssh_common_arg='-o StrictHostKeyChecking=no'
+
+
+[debian_hosts]
+debian.example.org
+
+[rocky_hosts]
+rocky.example.org
+[rocky_hosts:vars]
+ansible_python_interpreter=/usr/libexec/platform-python
+
+[suse_hosts]
+suse.example.org
+
+[ubuntu_hosts]
+ubuntu.example.org
+
+####### Parameters ######
+
+
+[debian_hosts:vars]
+ansible_user=ansible
+ansible_become=yes 
+ansible_become_pass=ansible
+
+
+[rocky_hosts:vars]
+ansible_user=ansible
+ansible_become=yes
+ansible_become_method=su
+ansible_become_pass=vagrant
+
+[suse_hosts:vars]
+ansible_user=root
+
+[ubuntu_hosts:vars]
+ansible_user=ansible
+ansible_become=yes
+
+
